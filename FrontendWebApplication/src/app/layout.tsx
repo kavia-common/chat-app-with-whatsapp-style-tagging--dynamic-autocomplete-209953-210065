@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ClientProvider from "./ClientProvider";
 
 export const metadata: Metadata = {
-  title: "Minimal Next.js App",
-  description: "Ultra-minimal Next.js application",
+  title: "Chat App with Tagging",
+  description: "WhatsApp-style tagging with dynamic autocomplete",
 };
 
 export default function RootLayout({
@@ -13,8 +14,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        {children}
+      <body suppressHydrationWarning className="app">
+        <ClientProvider>{children}</ClientProvider>
       </body>
     </html>
   );

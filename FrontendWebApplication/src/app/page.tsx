@@ -1,9 +1,11 @@
+"use client";
+
+import ChatWindow from "@/components/ChatWindow";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white flex items-center justify-center">
-      <h1 className="text-black text-4xl font-light">
-        FrontendWebApplication is being generated
-      </h1>
+    <main className="chat-container">
+      <ChatWindow />
     </main>
   );
 }
