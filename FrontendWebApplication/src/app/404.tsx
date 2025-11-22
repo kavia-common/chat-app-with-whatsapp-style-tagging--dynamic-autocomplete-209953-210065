@@ -1,7 +1,5 @@
-export const dynamic = "force-dynamic";
-
-export default function NotFound() {
-  // Minimal dynamic not-found page to avoid static export recursion at build time.
+export default function NotFound404() {
+  // Static 404 fallback for export to avoid build-time ENOENT issues in some environments.
   return (
     <main className="chat-container">
       <section className="card" role="alert" aria-live="polite">

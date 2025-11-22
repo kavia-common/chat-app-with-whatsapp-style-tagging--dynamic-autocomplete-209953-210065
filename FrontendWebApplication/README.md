@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Web Application (Next.js)
 
-## Getting Started
+This is a Next.js app that provides the chat UI with WhatsApp-style tagging and dynamic autocomplete. It communicates with the Backend API Service over REST.
 
-First, run the development server:
+## Prerequisites
+- Node.js 18+ and npm (or yarn/pnpm/bun)
+- Backend API Service running at http://localhost:3001
 
+## Environment Variables
+Copy the example file and adjust if needed:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.local.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Key variables:
+- NEXT_PUBLIC_API_BASE: base URL for backend (default http://localhost:3001)
+- NEXT_PUBLIC_FRONTEND_URL: external URL for this app (default http://localhost:3000)
+- NEXT_PUBLIC_NODE_ENV: development|production
+- NEXT_PUBLIC_LOG_LEVEL: debug|info|warn|error
+- NEXT_PUBLIC_FEATURE_FLAGS: comma-separated flags
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app auto-detects API base via NEXT_PUBLIC_API_BASE (fallback to http://localhost:3001). See src/lib/api.ts.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running locally
+1) Install dependencies
+```bash
+npm install
+```
+2) Start the dev server (port 3000)
+```bash
+npm run dev
+```
+Open http://localhost:3000
+
+Note: Ensure backend is running on http://localhost:3001 so API calls succeed.
+
+## Build and start
+```bash
+npm run build
+npm start
+```
+
+## Project notes
+- State management via Redux Toolkit (src/store)
+- REST client and base URL in src/lib/api.ts
+- Tag suggestions query param is "search" on the frontend; backend must accept both "search" and "query" for compatibility.
 
 ## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js Docs: https://nextjs.org/docs
+- Redux Toolkit: https://redux-toolkit.js.org/
